@@ -227,3 +227,86 @@ article {
 .about-page article {
   border: 1px dashed;
 }
+
+/* Contact page (form-no-js.html). Everything is scoped to .contact-page
+   so no other page changes. */
+.contact-page main > p,
+.contact-page address {
+  text-align: center;
+}
+
+.contact-page address {
+  font-style: normal;
+}
+
+/* "Find me online" links as one centered row, no bullets */
+.contact-page section[aria-labelledby="links-heading"] ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.5rem;
+  list-style: none;
+  padding: 0;
+}
+
+.contact-page section[aria-labelledby="links-heading"] a {
+  overflow-wrap: anywhere;
+}
+
+/* Form sits on the page background as a centered ~30rem column */
+.contact-page .contact-form {
+  width: 100%;
+  max-width: 30rem;
+  margin: 1rem auto 0;
+  text-align: left;
+}
+
+.contact-page .field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.contact-page .field label {
+  font-weight: normal;
+}
+
+/* Border stays 1px in every state so later validation styles
+   cannot cause layout shift. */
+.contact-page .field input,
+.contact-page .field textarea,
+.contact-page .contact-form button {
+  font: inherit;
+  color: var(--color-text);
+  background-color: white;
+  border: 1px solid var(--color-text);
+  border-radius: 2px;
+  padding: 0.5rem 0.75rem;
+}
+
+.contact-page .field input,
+.contact-page .field textarea {
+  width: 100%;
+}
+
+.contact-page .field textarea {
+  resize: vertical;
+}
+
+.contact-page .contact-form button {
+  cursor: pointer;
+}
+
+.contact-page .contact-form button:hover {
+  background-color: var(--color-text);
+  color: white;
+}
+
+.contact-page main a:focus,
+.contact-page .contact-form input:focus,
+.contact-page .contact-form textarea:focus,
+.contact-page .contact-form button:focus {
+  outline: 3px solid var(--color-link);
+  outline-offset: 2px;
+}
