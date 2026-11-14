@@ -102,6 +102,10 @@ body > header button:focus {
   border: 1px solid var(--color-header-text);
   border-radius: 2px;
   cursor: pointer;
+  font: inherit;
+  font-size: 0.875rem;
+  line-height: 1.2;
+  padding: 0.25rem 0.625rem;
 }
 
 /* Hover changes the border and underlines the text but not the text
@@ -114,6 +118,14 @@ body > header button:focus {
 #theme-toggle[aria-pressed="true"] {
   color: var(--color-header-bg);
   background-color: var(--color-header-text);
+}
+
+/* The nav is always the header's last item and is pushed right, so it sits in the same place whether or not the page has the theme button (form-no-js.html has none). */
+body > header nav { margin-left: auto; }
+
+/* Below this width the nav always gets its own line, so every page's header wraps at the same point. */
+@media (max-width: 85rem) {
+  body > header nav { flex-basis: 100%; margin-left: 0; }
 }
 
 /* Child combinator (>): matches a p only when it is a direct child of header.
@@ -237,9 +249,14 @@ footer {
 
 @media (max-width: 600px) {
   body > header {
-    flex-direction: column;
-    align-items: flex-start;
     position: static;
+    column-gap: 0.75rem;
+    padding-inline: 1rem;
+  }
+
+  #theme-toggle {
+    font-size: 0.8125rem;
+    padding: 0.2rem 0.5rem;
   }
 
   h1 {
