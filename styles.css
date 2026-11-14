@@ -488,6 +488,10 @@ article {
   border-left-color: #7a4100;
 }
 
+.contact-page #error-area {
+  margin-top: 1rem;
+}
+
 /* Error paragraphs: a red left bar and bold text, so errors are not
    shown by color alone. Each message also names its field. */
 .contact-page #error-area p {

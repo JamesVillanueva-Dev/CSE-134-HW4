@@ -64,14 +64,14 @@
           <textarea id="comments" name="comments" rows="6" required minlength="10" maxlength="1000" aria-describedby="comments-hint comments-info comments-error"></textarea>
         </div>
         <p id="comments-info" hidden></p>
+        <input type="hidden" name="possible_bot" value="true">
+        <input type="hidden" name="form-errors" id="form-errors-field">
+        <button type="submit">Send message</button>
         <div id="error-area" aria-live="polite" hidden>
           <p id="name-error"></p>
           <p id="email-error"></p>
           <p id="comments-error"></p>
         </div>
-        <input type="hidden" name="possible_bot" value="true">
-        <input type="hidden" name="form-errors" id="form-errors-field">
-        <button type="submit">Send message</button>
       </form>
     </section>
   </main>
