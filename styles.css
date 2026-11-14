@@ -63,7 +63,7 @@
 }
 
 
-header {
+body > header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -78,19 +78,19 @@ header {
 }
 /* Descendant combinator (space): matches any a inside header, at any depth.
    Makes header links readable on the dark background. */
-header a {
+body > header a {
   color: var(--color-header-text);
   text-decoration: none;
 }
 
 /* Header hover and focus use the header's own colors, because the
    page-body colors don't have enough contrast on the header background. */
-header a:hover {
+body > header a:hover {
   color: var(--color-header-hover);
 }
 
-header a:focus,
-header button:focus {
+body > header a:focus,
+body > header button:focus {
   outline-color: var(--color-header-focus);
 }
 
@@ -118,7 +118,7 @@ header button:focus {
 
 /* Child combinator (>): matches a p only when it is a direct child of header.
    Styles the site name. */
-header > p {
+body > header > p {
   font-size: 1.25rem;
   font-weight: bold;
   letter-spacing: 0.02em;
@@ -210,8 +210,8 @@ ul {
   margin: 1rem auto;
 }
 
-header p,
-header ul {
+body > header p,
+body > header ul {
   margin: 0;
   padding: 0;
 }
@@ -236,7 +236,7 @@ footer {
 }
 
 @media (max-width: 600px) {
-  header {
+  body > header {
     flex-direction: column;
     align-items: flex-start;
     position: static;
