@@ -5,15 +5,61 @@
   margin: 0; padding: 0;
 }
 
+/* Light theme (the default). Every color on the site comes from these
+   variables, so the dark theme below only has to redefine them. */
 :root {
+  color-scheme: light; /* native controls (scrollbars, progress) match */
   --color-text: #1f2328;
   --color-bg: #cedaf9;
-  --color-accent: #ffffff;
+  --color-surface: #ffffff; /* cards, articles, form fields */
+  --color-accent: #ffffff; /* line under the header */
   --font-main: "Helvetica Neue", Arial, sans-serif;
   --max-width: calc(70ch + 2 * var(--space)); /* ~70 characters per line plus main's padding */
   --space: 1.5rem;
-  --color-focus: #ffa600;
   --color-link: #1d4ed8;
+  --color-link-hover: #9a3412;
+  /* Focus ring for the page body: at least 3:1 against --color-bg and
+     --color-surface. The header has its own, see below. */
+  --color-focus: #b45309;
+  --color-header-bg: #1f2328;
+  --color-header-text: #ffffff;
+  --color-header-hover: #ffa600;
+  --color-header-focus: #ffa600; /* 3:1+ against --color-header-bg */
+  --color-chip-bg: #e8efff;
+  --color-error: #b42318;
+  --color-error-bg: #fff5f5;
+  --color-valid: #1a7f37;
+  --color-warning: #7a4100;
+}
+
+/* Dark theme, turned on by theme.js setting data-theme="dark" on <html>.
+   All pairs meet WCAG AA (4.5:1 text, 3:1 focus rings and borders). */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-text: #e6edf3;
+  --color-bg: #0d1117;
+  --color-surface: #161b22;
+  --color-accent: #6e7681;
+  --color-link: #79b8ff;
+  --color-link-hover: #ffa657;
+  --color-focus: #ffa600;
+  --color-header-bg: #21262d;
+  --color-header-text: #f0f6fc;
+  --color-header-hover: #ffb84d;
+  --color-header-focus: #ffa600;
+  --color-chip-bg: #1f2d4d;
+  --color-error: #ff7b72;
+  --color-error-bg: #2d1214;
+  --color-valid: #3fb950;
+  --color-warning: #e3b341;
+}
+
+/* Cross-fade between pages when following a link. Only for people who
+   haven't asked for reduced motion; unsupported browsers ignore it. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
 }
 
 
@@ -24,7 +70,7 @@ header {
   flex-wrap: wrap;
   gap: 1rem;
   padding: 0.75rem var(--space);
-  background-color: var(--color-text);
+  background-color: var(--color-header-bg);
   border-bottom: 3px solid var(--color-accent);
   position: sticky;
   top: 0;
@@ -33,8 +79,41 @@ header {
 /* Descendant combinator (space): matches any a inside header, at any depth.
    Makes header links readable on the dark background. */
 header a {
-  color: white;
+  color: var(--color-header-text);
   text-decoration: none;
+}
+
+/* Header hover and focus use the header's own colors, because the
+   page-body colors don't have enough contrast on the header background. */
+header a:hover {
+  color: var(--color-header-hover);
+}
+
+header a:focus,
+header button:focus {
+  outline-color: var(--color-header-focus);
+}
+
+/* Theme toggle: outlined to match the header. aria-pressed="true" (dark
+   theme on) fills it in, so the state shows without relying on color. */
+#theme-toggle {
+  color: var(--color-header-text);
+  background-color: transparent;
+  border: 1px solid var(--color-header-text);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+/* Hover changes the border and underlines the text but not the text
+   color, so it stays readable in the pressed (filled) state too. */
+#theme-toggle:hover {
+  border-color: var(--color-header-hover);
+  text-decoration: underline;
+}
+
+#theme-toggle[aria-pressed="true"] {
+  color: var(--color-header-bg);
+  background-color: var(--color-header-text);
 }
 
 /* Child combinator (>): matches a p only when it is a direct child of header.
@@ -101,11 +180,11 @@ canvas {
 }
 
 a:hover {
-    color: var(--color-focus);
+    color: var(--color-link-hover);
 }
 
 a:focus, input:focus, button:focus, textarea:focus{
-    outline: 3px groove var(--color-focus);
+    outline: 3px solid var(--color-focus);
 }
 
   /* Attribute selector ([attr="value"]): matches the section whose aria-labelledby
@@ -170,7 +249,7 @@ footer {
 project-card {
   display: flex;
   flex-direction: column;
-  background-color: white;
+  background-color: var(--color-surface);
   border-radius: 0.5rem;
   padding: var(--space);
 }
@@ -189,7 +268,7 @@ project-card a {
   width: fit-content;
   padding: 0.2rem 0.65rem;
   border-radius: 999px;
-  background-color: #e8efff;
+  background-color: var(--color-chip-bg);
   color: var(--color-link);
   font-size: 0.875rem;
   font-weight: bold;
@@ -222,7 +301,7 @@ button {
 }
 
 article {
-  background-color: white;
+  background-color: var(--color-surface);
   padding: var(--space);
   margin-bottom: 1rem;
 }
@@ -301,7 +380,7 @@ article {
 }
 
 .about-page section[aria-labelledby="story-heading"] svg circle {
-  fill: white;
+  fill: var(--color-surface);
   stroke: var(--color-text);
 }
 
@@ -415,7 +494,7 @@ article {
 .contact-page .contact-form button {
   font: inherit;
   color: var(--color-text);
-  background-color: white;
+  background-color: var(--color-surface);
   border: 1px solid var(--color-text);
   border-radius: 2px;
   padding: 0.5rem 0.75rem;
@@ -436,7 +515,7 @@ article {
 
 .contact-page .contact-form button:hover {
   background-color: var(--color-text);
-  color: white;
+  color: var(--color-surface);
 }
 
 .contact-page main a:focus,
@@ -459,14 +538,14 @@ article {
    relying on color alone. */
 .contact-page .field input:user-invalid,
 .contact-page .field textarea:user-invalid {
-  border-color: #b42318;
-  background-color: #fff5f5;
-  box-shadow: inset 4px 0 0 #b42318;
+  border-color: var(--color-error);
+  background-color: var(--color-error-bg);
+  box-shadow: inset 4px 0 0 var(--color-error);
 }
 
 .contact-page .field input:user-valid,
 .contact-page .field textarea:user-valid {
-  border-color: #1a7f37;
+  border-color: var(--color-valid);
 }
 
 /* Part 3 message areas (form-with-js.html). Both start with the hidden
@@ -484,8 +563,8 @@ article {
 }
 
 .contact-page #comments-info.is-warning {
-  color: #7a4100;
-  border-left-color: #7a4100;
+  color: var(--color-warning);
+  border-left-color: var(--color-warning);
 }
 
 .contact-page #error-area {
@@ -497,8 +576,8 @@ article {
 .contact-page #error-area p {
   margin: 0 0 0.5rem;
   padding-left: 0.5rem;
-  border-left: 4px solid #b42318;
-  color: #b42318;
+  border-left: 4px solid var(--color-error);
+  color: var(--color-error);
   font-weight: bold;
 }
 
