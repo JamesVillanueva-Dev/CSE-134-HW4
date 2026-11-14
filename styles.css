@@ -468,3 +468,37 @@ article {
 .contact-page .field textarea:user-valid {
   border-color: #1a7f37;
 }
+
+/* Part 3 message areas (form-with-js.html). Both start with the hidden
+   attribute and form.js removes it, so they never show without JS.
+   No display is set on #error-area or #comments-info, so the hidden
+   attribute keeps working. No transitions or animations, so nothing
+   flashes. */
+.contact-page #comments-info {
+  margin: 0 0 1rem;
+  padding-left: 0.5rem;
+  /* Transparent bar in the normal state so the warning state only
+     changes colors and the text never moves. */
+  border-left: 4px solid transparent;
+  font-size: 0.9em;
+}
+
+.contact-page #comments-info.is-warning {
+  color: #7a4100;
+  border-left-color: #7a4100;
+}
+
+/* Error paragraphs: a red left bar and bold text, so errors are not
+   shown by color alone. Each message also names its field. */
+.contact-page #error-area p {
+  margin: 0 0 0.5rem;
+  padding-left: 0.5rem;
+  border-left: 4px solid #b42318;
+  color: #b42318;
+  font-weight: bold;
+}
+
+/* Empty error paragraphs take up no space */
+.contact-page #error-area p:empty {
+  display: none;
+}

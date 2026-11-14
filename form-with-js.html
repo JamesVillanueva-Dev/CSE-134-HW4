@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Get in touch with James Villanueva.">
+  <meta name="author" content="James Villanueva">
+  <title>Contact | James Villanueva</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="form.js" defer></script>
+  <link rel="icon" href="images/headshot.jpg" type="image/jpeg">
+</head>
+<body class="contact-page">
+  <header>
+    <p><a href="index.html">James Villanueva</a></p>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="experience.html">Experience</a></li>
+        <li><a href="form-with-js.html" aria-current="page">Contact</a></li>
+        <li><a href="form-no-js.html">Contact (no JS)</a></li>
+        <li><a href="resume.pdf">Resume (PDF)</a></li>
+      </ul>
+    </nav>
+  </header>
+ 
+  <main>
+    <h1>Contact</h1>
+    <p>The fastest way to reach me is email. You can also use the form below.</p>
+ 
+    <section aria-labelledby="links-heading">
+      <h2 id="links-heading">Find me online</h2>
+      <ul>
+        <li><a href="mailto:j8villanueva@ucsd.edu">j8villanueva@ucsd.edu</a></li>
+        <li><a href="https://www.linkedin.com/in/jamesuvillanueva">LinkedIn</a></li>
+        <li><a href="https://github.com/JamesVillanueva-Dev">GitHub</a></li>
+      </ul>
+      <address>
+        James Villanueva<br>
+        UC San Diego<br>
+        La Jolla, California
+      </address>
+    </section>
+ 
+    <section aria-labelledby="form-heading">
+      <h2 id="form-heading">Send a message</h2>
+      <form action="https://httpbin.org/post" method="post" class="contact-form">
+        <div class="field">
+          <label for="name">Name (required)</label>
+          <p class="hint" id="name-hint">Up to 100 characters.</p>
+          <input type="text" id="name" name="name" autocomplete="name" required minlength="1" maxlength="100" aria-describedby="name-hint name-error">
+        </div>
+        <div class="field">
+          <label for="email">Email (required)</label>
+          <p class="hint" id="email-hint">For example, name@example.com.</p>
+          <input type="email" id="email" name="email" autocomplete="email" required aria-describedby="email-hint email-error">
+        </div>
+        <div class="field">
+          <label for="comments">Comments (required)</label>
+          <p class="hint" id="comments-hint">10 to 1,000 characters.</p>
+          <textarea id="comments" name="comments" rows="6" required minlength="10" maxlength="1000" aria-describedby="comments-hint comments-info comments-error"></textarea>
+        </div>
+        <p id="comments-info" hidden></p>
+        <div id="error-area" aria-live="polite" hidden>
+          <p id="name-error"></p>
+          <p id="email-error"></p>
+          <p id="comments-error"></p>
+        </div>
+        <input type="hidden" name="possible_bot" value="true">
+        <input type="hidden" name="form-errors" id="form-errors-field">
+        <button type="submit">Send message</button>
+      </form>
+    </section>
+  </main>
+ 
+  <footer>
+    <ul>
+      <li><a href="https://github.com/JamesVillanueva-Dev">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/jamesuvillanueva">LinkedIn</a></li>
+      <li><a href="mailto:j8villanueva@ucsd.edu">Email</a></li>
+      <li><a href="experiments.html">HTML experiments</a></li>
+    </ul>
+    <p><small>&copy; 2026 James Villanueva</small></p>
+  </footer>
+</body>
+</html>
+ 
