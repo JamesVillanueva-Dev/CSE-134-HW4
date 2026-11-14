@@ -446,3 +446,25 @@ article {
   outline: 3px solid var(--color-link);
   outline-offset: 2px;
 }
+
+.contact-page .field .hint {
+  margin: 0;
+  font-size: 0.9em;
+}
+
+/* Validation states. :user-invalid / :user-valid only match after the
+   user interacts, so empty fields are not flagged on page load. Only
+   colors and an inset shadow change, never border width, padding or
+   margins, so nothing shifts. The inset bar marks errors without
+   relying on color alone. */
+.contact-page .field input:user-invalid,
+.contact-page .field textarea:user-invalid {
+  border-color: #b42318;
+  background-color: #fff5f5;
+  box-shadow: inset 4px 0 0 #b42318;
+}
+
+.contact-page .field input:user-valid,
+.contact-page .field textarea:user-valid {
+  border-color: #1a7f37;
+}
